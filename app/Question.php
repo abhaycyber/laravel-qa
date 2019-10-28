@@ -15,7 +15,7 @@ protected $fillable = [
     
 public function user(){
 
-return $this->belongTo(User::class);
+return $this->belongsTo(User::class);
 
 //after that You can achive this
 //$question = Question::find(1);
@@ -23,5 +23,13 @@ return $this->belongTo(User::class);
 
 }
 
+
+public function setTitleAttribute($value){
+
+    $this->attributes['title'] = $value;
+    $this->attributes['slug'] = str_slug($value);
+    
+       }
+    
 
 }
