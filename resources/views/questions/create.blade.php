@@ -30,7 +30,7 @@
                             </label>
 
 
-                            <input type="text" name="title" id="question-title" class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}">
+                            <input type="text" name="title" value="{{ old('title') }}" id="question-title" class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}">
 
                             @if ($errors->has('title'))
                             <div class="invalid-feedback">
@@ -50,7 +50,7 @@
                             </label>
 
 
-                            <textarea name="body" id="question-body" rows="10" class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}"></textarea>
+                            <textarea name="body" id="question-body" rows="10" class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}">{{ old('body') }}</textarea>
 
                             @if ($errors->has('body'))
                             <div class="invalid-feedback">
