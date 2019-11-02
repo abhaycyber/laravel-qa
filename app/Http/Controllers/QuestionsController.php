@@ -53,7 +53,6 @@ class QuestionsController extends Controller
     public function store(AskQuestionRequest $request)
     {
         
-        
 $request->user()->questions()->create($request->only('title','body'));
 
 return redirect()->route('questions.index')->with('success', "your question has been submitted");
@@ -69,7 +68,17 @@ return redirect()->route('questions.index')->with('success', "your question has 
      */
     public function show(Question $question)
     {
-        //
+        //dd($question->body);
+
+        $question->increment('views');
+
+        //$question->views = $question->views + 1;
+
+       // $question->save();
+
+       return view('questions.show', compact('question'));
+
+
     }
 
     /**
@@ -115,7 +124,6 @@ return redirect()->route('questions.index')->with('success', "your question has 
         $question->delete();
 
         return redirect()->route('questions.index')->with('success', "Your question has been deleted.");
-
 
 
     }

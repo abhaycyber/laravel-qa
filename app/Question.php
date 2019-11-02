@@ -34,7 +34,9 @@ public function setTitleAttribute($value){
 
        public function getUrlAttribute(){
            
-            return route("questions.show", $this->id);
+           // return route("questions.show", $this->id);
+
+           return route("questions.show", $this->slug);
 
 
         
@@ -70,6 +72,13 @@ public function setTitleAttribute($value){
        }
 
 
+       public function getBodyHtmlAttribute(){
+           
+        
+        return \Parsedown::instance()->text($this->body);
+
+    
+       }
 
        
         
