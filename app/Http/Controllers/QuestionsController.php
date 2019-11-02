@@ -8,6 +8,12 @@ use App\Http\Requests\AskQuestionRequest;
 
 class QuestionsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index','show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -90,6 +96,9 @@ return redirect()->route('questions.index')->with('success', "your question has 
     public function edit(Question $question)
     {
 
+
+        $this->authorize("update", $question);
+
         if(\Gate::denies('update-question', $question)){
 
             abort(403, "Access Denied");
@@ -115,6 +124,9 @@ return redirect()->route('questions.index')->with('success', "your question has 
     public function update(AskQuestionRequest $request, Question $question)
     {
 
+
+        $this->authorize("update", $question);
+
         if(\Gate::denies('update-question', $question)){
 
             abort(403, "Access Denied");
@@ -135,7 +147,7 @@ return redirect()->route('questions.index')->with('success', "your question has 
      */
     public function destroy(Question $question)
     {
-        
+        $this->authorize("delete", $question);
 
         if(\Gate::denies('delete-question', $question)){
 
