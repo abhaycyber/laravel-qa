@@ -77,8 +77,13 @@ return redirect()->route('questions.index')->with('success', "your question has 
      */
     public function edit(Question $question)
     {
-        //
+
+        return view("questions.edit", compact('question'));
+
     }
+
+
+
 
     /**
      * Update the specified resource in storage.
@@ -87,9 +92,12 @@ return redirect()->route('questions.index')->with('success', "your question has 
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(AskQuestionRequest $request, Question $question)
     {
-        //
+        
+        $question->update($request->only('title', 'body'));
+
+        return redirect()->route('questions.index')->with('success', "Your question has been updated.");
     }
 
     /**
