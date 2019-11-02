@@ -39,6 +39,9 @@ class QuestionsController extends Controller
         $question = new Question();
 
         return view('questions.create', compact('question'));
+
+        //return view("questions.edit", compact('question'));
+
     }
 
     /**
@@ -108,6 +111,12 @@ return redirect()->route('questions.index')->with('success', "your question has 
      */
     public function destroy(Question $question)
     {
-        //
+        
+        $question->delete();
+
+        return redirect()->route('questions.index')->with('success', "Your question has been deleted.");
+
+
+
     }
 }
