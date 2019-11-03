@@ -44,6 +44,11 @@ class User extends Authenticatable
 
    }
 
+   public function answers()
+   {
+       return $this->hasMany(Question::class);
+   }
+
 
 
 

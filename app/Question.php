@@ -7,81 +7,74 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
 
-protected $fillable = [
+    protected $fillable = [
 
-    'title', 'body'
+        'title', 'body'
 
-];    
-    
-public function user(){
+    ];
 
-return $this->belongsTo(User::class);
+    public function user()
+    {
 
-//after that You can achive this
-//$question = Question::find(1);
-//$question->user-name; or any other info user have
+        return $this->belongsTo(User::class);
 
-}
+        //after that You can achive this
+        //$question = Question::find(1);
+        //$question->user-name; or any other info user have
 
-
-public function setTitleAttribute($value){
-
-    $this->attributes['title'] = $value;
-    $this->attributes['slug'] = str_slug($value);
-    
-       }
-    
-
-       public function getUrlAttribute(){
-           
-           // return route("questions.show", $this->id);
-
-           return route("questions.show", $this->slug);
+    }
 
 
-        
-           }
+    public function setTitleAttribute($value)
+    {
+
+        $this->attributes['title'] = $value;
+        $this->attributes['slug'] = str_slug($value);
+    }
 
 
-       public function getCreatedDateAttribute(){
-           
+    public function getUrlAttribute()
+    {
+
+        // return route("questions.show", $this->id);
+
+        return route("questions.show", $this->slug);
+    }
+
+
+    public function getCreatedDateAttribute()
+    {
+
         return $this->created_at->diffForHumans();
-
-    
-       }
+    }
 
 
-       public function getStatusAttribute(){
-           
-        if ($this->answers > 0){
+    public function getStatusAttribute()
+    {
 
-            if($this->best_answer_id){
+        if ($this->answers_count > 0) {
+
+            if ($this->best_answer_id) {
 
                 return "answered-accepted";
-
-
             }
 
 
-                return "answered";
-
-
+            return "answered";
         }
 
         return "unanswered";
-       }
+    }
 
 
-       public function getBodyHtmlAttribute(){
-           
-        
+    public function getBodyHtmlAttribute()
+    {
         return \Parsedown::instance()->text($this->body);
-
-    
-       }
-
-       
-        
+    }
 
 
+    public function answers()
+    {
+        return $this->hasMany(Question::class);
+    }
 }

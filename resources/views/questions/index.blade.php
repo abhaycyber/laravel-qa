@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -35,7 +38,7 @@
 
                             <div class="status {{ $question->status }}">
 
-                                <strong>{{ $question->answers }}</strong> {{ str_plural('answer', $question->answers) }}
+                                <strong>{{ $question->answers_count }}</strong> {{ str_plural('answer', $question->answers_count) }}
 
                             </div>
 
