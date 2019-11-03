@@ -20,11 +20,18 @@ class DatabaseSeeder extends Seeder
 
 factory(App\Question::class, rand(1,5))->make()
 
-            );
+            )->each(function ($q)
+            {
+
+                $q->answers()->saveMany(factory(App\Answer::class, rand(1,5))->make());
+
+            });
+
+        });
 
 
             
-        });
+        
        // factory(App\Question::class, 10)->create();
 
 
