@@ -75,6 +75,9 @@ class Question extends Model
 
     public function answers()
     {
-        return $this->hasMany(Question::class);
+        return $this->hasMany(Answer::class);
     }
+
+
+    
 }

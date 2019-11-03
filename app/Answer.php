@@ -38,5 +38,18 @@ static::created(function ($answer){
 
     }
 
+    public function getBodyHtmlAttribute()
+    {
+        return \Parsedown::instance()->text($this->body);
+    }
+
+    
+    public function getCreatedDateAttribute()
+    {
+
+        return $this->created_at->diffForHumans();
+    }
+
+
 
 }

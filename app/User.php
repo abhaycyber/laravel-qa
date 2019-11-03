@@ -27,30 +27,36 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-   public function questions(){
+    public function questions()
+    {
 
 
-    return $this->hasMany(Question::class);
+        return $this->hasMany(Question::class);
+    }
+
+    public function getUrlAttribute()
+    {
+
+        //return route("questions.show", $this->id);
+
+        return '#';
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Question::class);
+    }
 
 
-   }
+    public function getAvatarAttribute()
+    {
 
-   public function getUrlAttribute(){
-           
-    //return route("questions.show", $this->id);
+        $email = $this->email;
+       
+        $size = 32;
 
-    return '#';
-
-
-   }
-
-   public function answers()
-   {
-       return $this->hasMany(Question::class);
-   }
+        return  "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "?s=" . $size; 
 
 
-
-
-
+    }
 }
