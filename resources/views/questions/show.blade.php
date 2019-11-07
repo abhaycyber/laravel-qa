@@ -37,7 +37,7 @@
 
             <a title="This question is useful" class="vote-up">
 
-                Vote up
+                <i class="fas fa-caret-up fa-3x"></i>
 
             </a>
 
@@ -45,13 +45,13 @@
 
             <a title="This question is not useful" class="vote-down off">
 
-                Vote down
+                <i class="fas fa-caret-down fa-3x"></i>
 
             </a>
 
-            <a title="click to mark as favorite question (Click again to undo)" class="favorite">
+            <a title="click to mark as favorite question (Click again to undo)" class="favorite mt-2 favorited">
 
-                Favorite
+                <i class="fas fa-star fa-2x"></i>
 
                 <span class="favorites-count">123</span>
 
@@ -84,6 +84,30 @@
                     @foreach ($question->answers as $answer)
 
                     <div class="media">
+
+                        <div class="d-fex flex-colum vote-controls">
+
+                            <a title="This answer is useful" class="vote-up">
+
+                                <i class="fas fa-caret-up fa-3x"></i>
+
+                            </a>
+
+                            <span class="votes-count">1230</span>
+
+                            <a title="This answer is not useful" class="vote-down off">
+
+                                <i class="fas fa-caret-down fa-3x"></i>
+
+                            </a>
+
+                            <a title="Mark this answer as best answer" class="vote-accepted mt-2">
+
+                                <i class="fas fa-check fa-2x"></i>
+
+                            </a>
+
+                        </div>
 
                         <div class="media-body">
 
