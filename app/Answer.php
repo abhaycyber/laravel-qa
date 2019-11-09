@@ -18,32 +18,33 @@ class Answer extends Model
     {
 
         return $this->belongsTo(Question::class);
-
     }
 
     public function user()
     {
 
         return $this->belongsTo(User::class);
-
     }
 
-    public static function boot(){
+    public static function boot()
+    {
 
 
-parent::boot();
+        parent::boot();
 
-static::created(function ($answer){
-
-
-    $answer->question->increment('answers_count');
-
-    $answer->question->save();
-
-});
+        static::created(function ($answer) {
 
 
+            $answer->question->increment('answers_count');
 
+            //$answer->question->save();
+
+        });
+
+        static::deleted(function ($answer) {
+
+            $answer->question->decrement('answers_count');
+        });
     }
 
     public function getBodyHtmlAttribute()
@@ -51,13 +52,10 @@ static::created(function ($answer){
         return \Parsedown::instance()->text($this->body);
     }
 
-    
+
     public function getCreatedDateAttribute()
     {
 
         return $this->created_at->diffForHumans();
     }
-
-
-
 }
