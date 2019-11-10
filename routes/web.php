@@ -26,3 +26,9 @@ Route::resource('questions.answers', 'AnswersController')->except(['index', 'cre
 
 Route::get('/questions/{slug}', 'QuestionsController@show')->name('questions.show');
 
+//Single action controller example
+
+Route::post('/answers/{answer}/accept', 'AcceptAnswerController')->name('answers.accept');
+
+
+
