@@ -9,7 +9,7 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run_11thnov2019()
     {
         // $this->call(UsersTableSeeder::class);
 
@@ -37,4 +37,18 @@ factory(App\Question::class, rand(1,5))->make()
 
 
     }
+
+    public function run()
+    {
+       
+        $this->call([
+
+           UsersQuestionsAnswersTableSeeder::class, 
+           FavoritesTableSeeder::class, 
+
+        ])
+
+
+    }
+
 }
